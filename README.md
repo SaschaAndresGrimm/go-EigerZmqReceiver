@@ -34,6 +34,10 @@ Usage of go-EigerZmqReceiver:
 ## Like it?
 Great. Feel free to contribute!
 
+## Bug or Feature Requests?
+Great. Feel free to contribute!
+
 ## Limitations
 - bitshuffle lz4 de-compression is not yet implemented
-- no warranty for performance (which depends on )
+- no warranty for performance (which depends on multiple factors)
+- <32 bit stremaing mode not tested, yet
