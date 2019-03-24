@@ -7,8 +7,8 @@ Why go? It's simple to write, platform independent, efficient, and compiled.
 
 ## Usage
 ### I want to compile the source
-If you are not familiar with go, have a look at Go's excellent [documentation](https://golang.org/doc/install)
-Then it's as easy as
+If you are not familiar with go, have a look at Go's excellent [documentation](https://golang.org/doc/install).
+Then it's as easy as:
 ```
 go get github.com/SaschaAndresGrimm/go-EigerZmqReceiver
 go install
@@ -24,7 +24,7 @@ Check the bin folder if the binary is available for your platform and architectu
 ```
 Usage of go-EigerZmqReceiver:
   -fpath string
-    	File path to store images. If empty, not files are stored.
+    	File path to store images. If empty no files are stored.
   -ip string
     	ip of EIGER2 DCU (default "10.42.41.10")
   -port int
@@ -35,9 +35,9 @@ Usage of go-EigerZmqReceiver:
 Great. Feel free to contribute!
 
 ## Bug or Feature Requests?
-Great. Feel free to contribute!
+Great. Feel free to share your findings or even contribute!
 
 ## Limitations
 - bitshuffle lz4 de-compression is not yet implemented
 - no warranty for performance (which depends on multiple factors)
-- <32 bit stremaing mode not tested, yet
+- <32 bit streaming mode not tested

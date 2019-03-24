@@ -20,7 +20,7 @@ var (
 func init() {
 	flag.StringVar(&ip, "ip", "10.42.41.10", "ip of EIGER2 DCU")
 	flag.IntVar(&port, "port", 9999, "EIGER2 zmq port")
-	flag.StringVar(&fpath, "fpath", "", "File path to store images. If empty, not files are stored.")
+	flag.StringVar(&fpath, "fpath", "", "File path to store images. If empty no files are stored.")
 	flag.Set("logtostderr", "true")
 	flag.Parse()
 
@@ -57,8 +57,7 @@ func receiveMultipart(socket *zmq.Socket) [][]byte {
 	multiPartMessage := make([][]byte, 9)
 	index := 0
 	multiPartMessage[index], _ = socket.RecvBytes(0)
-	more, _ := socket.GetRcvmore()
-	for more {
+	for more, _ := socket.GetRcvmore(); more == true; {
 		index++
 		multiPartMessage[index], _ = socket.RecvBytes(0)
 		more, _ = socket.GetRcvmore()
