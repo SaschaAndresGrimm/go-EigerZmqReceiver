@@ -1,6 +1,5 @@
 package bitshuffle
 
-// #cgo LDFLAGS: -llz4
 // #include <bitshuffle.h>
 import "C"
 
