@@ -7,13 +7,16 @@ Why go? It's simple to write, platform independent, efficient, and compiled.
 
 ## Usage
 ### I want to compile the source
-If you are not familiar with go, have a look at Go's excellent [documentation](https://golang.org/doc/install).
-Then it's as easy as:
+If you are not familiar with go, have a look at Go's excellent [documentation](https://golang.org/doc/install):
 ```
 go get github.com/SaschaAndresGrimm/go-EigerZmqReceiver
 go install
 go-EigerZmqReceiver
 ```
+Depends on
+- [libzmq](https://github.com/zeromq/libzmq)
+- [liblz4](https://lz4.github.io/lz4/)
+
 
 ### I want to use the binary
 Check the bin folder if the binary is available for your platform and architecture.
@@ -35,9 +38,8 @@ Usage of go-EigerZmqReceiver:
 Great. Feel free to contribute!
 
 ## Bug or Feature Requests?
-Great. Feel free to share your findings or even contribute!
+Great. Feel free to share your findings and/or contribute!
 
 ## Limitations
-- bitshuffle lz4 de-compression is not yet implemented
 - no warranty for performance (which depends on multiple factors)
 - <32 bit streaming mode not tested
