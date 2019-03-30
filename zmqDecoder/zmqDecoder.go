@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
+	"path"
 	"strings"
 
 	"github.com/golang/glog"
@@ -58,17 +60,43 @@ func Decode(multiPartMessage [][]byte, fpath string) error {
 
 }
 
-//decode zmq header frames which contian meta data for the current acquisition.
-//The ehader frames are sent after arm.
+//decode zmq header frames which contain the meta data for the current acquisition.
+//The header frames are sent after arm.
+//If Fpath is given, the files are stored as json format in fpath/goZMQ_05d_header.json.
+//Else, output meta data to stdout.
 func decodeHeader(multiPartMessage [][]byte) error {
-	//todo: write dumpConfig to store meta data, flat field, pixel mask, and LUT
+	//todo: write dumpConfig to store flat field, pixel mask, and LUT
 	glog.Info("decode header")
-	for key, value := range message2map(multiPartMessage[1]) {
-		fmt.Println("-", key, ":", value)
-	}
+	info := message2map(multiPartMessage[0])
+	metaData := message2map(multiPartMessage[1])
+
+	//flatfield, pixel mask, and LUT
 	if len(multiPartMessage) > 2 {
 		glog.Infof("header contains additional data which cannot be dumped")
 	}
+
+	//save meta data to json file
+	if Fpath != "" {
+		fname := fmt.Sprintf("goZMQ_%05.f_header.json", info["series"])
+		out := path.Join(Fpath, fname)
+		glog.Infof("save header data to %s", out)
+		os.MkdirAll(Fpath, os.ModePerm)
+
+		jsonFile, err := os.Create(out)
+		if err != nil {
+			glog.Errorf("Error creating JSON file: %s", err)
+			return err
+		}
+		defer jsonFile.Close()
+		jsonFile.Write(multiPartMessage[1])
+
+	} else {
+		//print output to stdout
+		for key, value := range metaData {
+			fmt.Println("*", key, ":", value)
+		}
+	}
+
 	return nil
 
 }
