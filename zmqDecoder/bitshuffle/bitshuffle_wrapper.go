@@ -9,12 +9,12 @@ import (
 
 //BshufDecompressLz4 inflates a bslz4 compressed byte array to an uncompressed byte array.
 // Returns the number of consumed bytes in input buffer or negative int if error happened.
-func BshufDecompressLz4(in, out unsafe.Pointer, size, elementSize int, blockSize uint32) int {
+func BshufDecompressLz4(in, out unsafe.Pointer, size, elementSize, blockSize int, ) int {
 	ret := C.bshuf_decompress_lz4(in,
 		out,
-		C.ulonglong(int(size)),
-		C.ulonglong(int(elementSize)),
-		C.ulonglong(int(blockSize)))
+		C.ulonglong(size),
+		C.ulonglong(elementSize),
+		C.ulonglong(blockSize))
 
 	return int(ret)
 

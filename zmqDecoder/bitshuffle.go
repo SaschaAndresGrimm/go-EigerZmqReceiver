@@ -13,7 +13,7 @@ import (
 func (imgData *ImageData) readBSLZ4() (int, error) {
 	//blocksize is big endian uint32 starting at byte 8, divided by element size
 	//data blob starts at byte 12
-	blockSize := binary.BigEndian.Uint32(imgData.DataBlob[8:12]) / uint32(imgData.ElementSize)
+	blockSize := int(binary.BigEndian.Uint32(imgData.DataBlob[8:12]) / uint32(imgData.ElementSize))
 
 	ret := bitshuffle.BshufDecompressLz4(unsafe.Pointer(&imgData.DataBlob[12]),
 		unsafe.Pointer(&imgData.Data[0]),
