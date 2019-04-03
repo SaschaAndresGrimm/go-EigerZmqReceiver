@@ -15,8 +15,6 @@ go-EigerZmqReceiver
 ```
 Depends on
 - [libzmq](https://github.com/zeromq/libzmq)
-- [liblz4](https://lz4.github.io/lz4/)
-
 
 ### I want to use the binary
 Check the bin folder if the binary is available for your platform and architecture.
