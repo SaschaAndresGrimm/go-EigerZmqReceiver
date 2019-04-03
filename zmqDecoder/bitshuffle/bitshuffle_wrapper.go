@@ -1,15 +1,15 @@
 package bitshuffle
 
-// #cgo LDFLAGS: -llz4
-// #include <bitshuffle.h>
+// #include "bitshuffle.h"
 import "C"
 
 import (
 	"unsafe"
 )
 
-//BshufDecompressLz4 deflates a bslz4 compressed byte array to an uncompressed byte array.
-func BshufDecompressLz4(in, out unsafe.Pointer, size, elementSize int, blockSize uint32) int {
+//BshufDecompressLz4 inflates a bslz4 compressed byte array to an uncompressed byte array.
+// Returns the number of consumed bytes in input buffer or negative int if error happened.
+func BshufDecompressLz4(in, out unsafe.Pointer, size, elementSize, blockSize int) int {
 	ret := C.bshuf_decompress_lz4(in,
 		out,
 		C.ulong(size),

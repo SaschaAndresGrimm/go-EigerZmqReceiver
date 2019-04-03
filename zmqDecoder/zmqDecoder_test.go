@@ -28,3 +28,14 @@ func TestDecodeBSLZ4_1M(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestDecodeHeader(t *testing.T) {
+	mpm := make([][]byte, 2)
+	mpm[0], _ = ioutil.ReadFile("testdata/bslz4_32bit_dheader-1.0_00013_ZMQframe00000.raw")
+	mpm[1], _ = ioutil.ReadFile("testdata/bslz4_32bit_dheader-1.0_00013_ZMQframe00001.raw")
+
+	err := decodeHeader(mpm)
+	if err != nil {
+		t.Error(err)
+	}
+}
