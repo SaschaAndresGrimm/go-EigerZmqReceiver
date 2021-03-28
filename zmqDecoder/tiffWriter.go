@@ -135,6 +135,8 @@ func (imgData *ImageData) WriteTiff(fpath string) error {
 		bitsPerSample = []uint32{32}
 	case "uint16":
 		bitsPerSample = []uint32{16}
+	case "uint8":
+		bitsPerSample = []uint32{8}
 	default:
 		msg := fmt.Sprintf("dtype %s not yet implemented", imgData.Type)
 		return errors.New(msg)

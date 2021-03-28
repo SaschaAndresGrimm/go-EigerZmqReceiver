@@ -147,6 +147,9 @@ func (imageData *ImageData) inflate() (int, error) {
 	//calculate the byte size of the deflated data
 	elements := imageData.Shape[0] * imageData.Shape[1]
 	switch imageData.Type {
+	case "uint8":
+		imageData.ElementSize = 1
+		imageData.ByteSize = 1 * elements
 	case "uint16":
 		imageData.ElementSize = 2
 		imageData.ByteSize = 2 * elements
